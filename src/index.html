@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Cocktail Curator</title>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <h1>Get a list of suggested cocktails!</h1>
+      <p>
+        To get a list of cocktails, please enter you liquor of choice. Here are
+        three examples:
+      </p>
+      <pre>
+     Tequila
+     Vodka
+     Gin
+    </pre
+      >
+      <form>
+        <label for="liquor">Enter a liquor:</label>
+        <input id="liquor" type="text" name="liquor" />
+        <button type="submit" class="btn-success" id="liquorIngredient">
+          Get Cocktail List
+        </button>
+      </form>
+      <p id="showResponse"></p>
+    </div>
+  </body>
 </html>
