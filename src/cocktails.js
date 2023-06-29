@@ -5,14 +5,15 @@ export default class Cocktail {
         `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`
       );
       const jsonifiedResponse = await response.json();
-      if (!response.ok) {
-        const errorMessage = `${response.status} ${response.statusText}
-        ${jsonifiedResponse.message}`;
-        throw new Error(errorMessage);
+      if (jsonifiedResponse.drinks && jsonifiedResponse.drinks.length > 0) {
+        const drinks = jsonifiedResponse.drinks;
+        const cocktailNames = drinks.map((drink) => drink.strDrink);
+        return cocktailNames;
+      } else {
+        throw new Error("No cocktails found");
       }
-      return jsonifiedResponse;
     } catch (error) {
-      return error;
+      throw new Error(`Error accessing the drink data: ${error}`);
     }
   }
 }

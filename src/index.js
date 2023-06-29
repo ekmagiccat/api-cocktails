@@ -7,26 +7,26 @@ import Cocktail from "./cocktails.js";
 
 async function getCocktail(ingredient) {
   const response = await Cocktail.getCocktail(ingredient);
-  if (response.main) {
+  if (response && response.length > 0) {
     printElements(response, ingredient);
   } else {
-    printError(response, ingredient);
+    printError("No cocktails found", ingredient);
   }
 }
 
 // UI Logic
 
 function printElements(response, ingredient) {
+  const cocktailNames = response.join(", ");
   document.querySelector(
     "#showResponse"
-  ).innerText = `Potential cocktails made with ${ingredient} are ${response.main.drinks}%.`;
+  ).innerText = `Potential cocktails made with ${ingredient} are: ${cocktailNames}.`;
 }
 
 function printError(error, ingredient) {
   document.querySelector(
     "#showResponse"
-  ).innerText = `There was an error accessing the drink data for ${ingredient}: 
-  ${error}.`;
+  ).innerText = `There was an error accessing the drink data for ${ingredient}: ${error}.`;
 }
 
 function handleFormSubmission(event) {
@@ -41,3 +41,4 @@ window.addEventListener("load", function () {
     .querySelector("form")
     .addEventListener("submit", handleFormSubmission);
 });
+
