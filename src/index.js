@@ -15,12 +15,18 @@ async function getCocktail(ingredient) {
 }
 
 // UI Logic
-
 function printElements(response, ingredient) {
-  const cocktailNames = response.join(", ");
-  document.querySelector(
-    "#showResponse"
-  ).innerText = `Potential cocktails made with ${ingredient} are: ${cocktailNames}.`;
+  const ul = document.createElement("ul");
+
+  response.forEach((drink) => {
+    const li = document.createElement("li");
+    li.innerText = drink;
+    ul.appendChild(li);
+  });
+
+  const showResponse = document.querySelector("#showResponse");
+  showResponse.innerText = `Potential cocktails made with ${ingredient} are:`;
+  showResponse.appendChild(ul);
 }
 
 function printError(error, ingredient) {
@@ -41,4 +47,3 @@ window.addEventListener("load", function () {
     .querySelector("form")
     .addEventListener("submit", handleFormSubmission);
 });
-
